@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.roleplaybetweenai_android.ChatView" />
+        
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical"
+                android:weightSum="1">
+                <TextView
+                    android:id="@+id/hint_model"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="使用模型:" />
+
+                <EditText
+                    android:id="@+id/modleName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="模型名称"
+                    android:inputType="text"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/hint_model_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="模型列表：https://help.aliyun.com/zh/model-studio/getting-started/models" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="900dp"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <EditText
+                    android:id="@+id/saveFilename"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入存档名称"
+                    android:inputType="text" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+                <Button
+                    android:id="@+id/savefile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="保存"
+                    android:enabled="@{viewModel.isWidgetsEnabled}"
+                    />
+                <Button
+                    android:id="@+id/loadfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="读取"
+                    android:enabled="@{viewModel.isWidgetsEnabled}"
+                    />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/editTextTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入阿里云百炼API Key"
+                    android:inputType="textPassword"
+                    android:enabled="@{viewModel.isWidgetsEnabled}"
+                    />
+
+                <EditText
+                    android:id="@+id/roleNameA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="角色A名称"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/TextAPrompt"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3"
+                    android:gravity="start|top"
+                    android:hint="角色A的系统提示词"
+                    android:inputType="textMultiLine"
+                    />
+
+
+                <EditText
+                    android:id="@+id/initialA"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:gravity="start|top"
+                    android:hint="角色A的第一句话"
+                    />
+
+                <EditText
+                    android:id="@+id/roleNameB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:hint="角色B名称" />
+
+                <EditText
+                    android:id="@+id/TextBPrompt"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3"
+                    android:gravity="start|top"
+                    android:hint="角色B的系统提示词"
+                    android:inputType="textMultiLine" />
+                <EditText
+                    android:id="@+id/initialB"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:gravity="start|top"
+                    android:hint="角色B的第一句话"
+                    />
+                <Button
+                    android:id="@+id/addSystemPrompt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="添加或更新最后一条系统提示词"
+                    android:enabled="@{viewModel.isWidgetsEnabled}"
+                    />
+                <TextView
+                    android:id="@+id/UsedToken"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="已耗费Token数："
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="截取截止到以下id："
+                    />
+                <EditText
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/truncateNum"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/truncateButton"
+                    android:enabled="@{viewModel.isWidgetsEnabled}"
+                    android:text="截取对话"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Switch
+                    android:id="@+id/enableThinking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="@{viewModel.isWidgetsEnabled}"
+                    android:text="思考模式"
+                    />
+
+                <Switch
+                    android:id="@+id/enableStream"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="@{viewModel.isWidgetsEnabled}"
+                    android:text="流式输出" />
+
+                <Switch
+                    android:id="@+id/enableSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="@{viewModel.isWidgetsEnabled}"
+                    android:text="联网搜索" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <EditText
+                    android:id="@+id/roundNumber"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:enabled="@{viewModel.isWidgetsEnabled}"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="轮；温度：" />
+
+                <EditText
+                    android:id="@+id/temprature"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="numberDecimal"
+                    android:text="0.3"
+                    android:enabled="@{viewModel.isWidgetsEnabled}"
+                    />
+            </LinearLayout>>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical"
+                android:weightSum="1"
+                >
+                <Button
+                    android:id="@+id/chatButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="@{viewModel.isWidgetsEnabled}"
+                    android:text="开始对话"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical"
+                android:weightSum="1"
+                >
+                <Button
+                    android:id="@+id/resetButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="@{viewModel.isWidgetsEnabled}"
+                    android:text="重置"
+                    />
+
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical"
+            android:weightSum="1"
+            >
+            <TextView
+                android:id="@+id/textViewRoles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                />
+        </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</layout>
